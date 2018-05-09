@@ -188,7 +188,7 @@ $wmiParams = @{
     }
 }
 
-$bindingResult = Set-WmiInstance @wmiParams
+Set-WmiInstance @wmiParams
 
 ##Removing WMI Subscriptions using Remove-WMIObject
 #Filter
@@ -199,6 +199,5 @@ Get-WMIObject -Namespace root\Subscription -Class LogFileEventConsumer -Filter "
 
 #Binding
 Get-WMIObject -Namespace root\Subscription -Class __FilterToConsumerBinding -Filter "__Path LIKE '%Service_Filter%'"  | Remove-WmiObject -Verbose
-
 
 #endregion

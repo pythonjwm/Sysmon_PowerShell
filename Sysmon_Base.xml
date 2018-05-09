@@ -54,7 +54,7 @@
         <PipeEvent onmatch="include"/>
 
         <!-- Event ID 19,20,21: - WmiEvent (WmiEventFilter activity detected) -->
-        <WmiEvent onmatch="include"/>
+        <WmiEvent onmatch="exclude"/>
         <!-- Need to figure out how to invoke the actual event -->
     </EventFiltering>
 </Sysmon>
