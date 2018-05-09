@@ -1,5 +1,5 @@
 # Sysmon-PowerShell
-This project demonstrates basic Sysmon usage, the various events associated with sysmon and how to invoke them.<br>
+This project demonstrates basic Sysmon usage, the various events associated with sysmon, and how to invoke them.<br>
 
 | Event ID | Description      |
 |:-------:|------------------|
