@@ -1,0 +1,60 @@
+<Sysmon schemaversion="4.00">
+    <!-- Make sure this is updated when sysmon is updated -->
+    <!-- Look at sysmon -s <manifest schemaversion="3.4" binaryversion="1.01">-->
+    <HashAlgorithms>SHA1</HashAlgorithms>
+    <!-- * for all algorithms -->
+    <EventFiltering>
+        <!--SYSMON EVENT ID 1 : PROCESS CREATION-->
+        <ProcessCreate onmatch="include"/>
+
+        <!--SYSMON EVENT ID 2 : FILE CREATION TIME RETROACTIVELY CHANGED IN THE FILESYSTEM-->
+        <!-- Ran into an issue with Image versus TargetFileName -->
+        <FileCreateTime onmatch="include"/>
+
+        <!--SYSMON EVENT ID 3 : NETWORK CONNECTION INITIATED-->
+        <!--DATA: UtcTime, ProcessGuid, ProcessId, Image, User, Protocol, Initiated, SourceIsIpv6, SourceIp, SourceHostname,
+        SourcePort, SourcePortName, DestinationIsIpV6, DestinationIP, DestinationHostname, DestinationPort, DestinationPortName -->
+        <NetworkConnect onmatch="include"/>
+
+        <!--SYSMON EVENT ID 4 : RESERVED FOR SYSMON STATUS MESSAGES, THIS LINE IS INCLUDED FOR DOCUMENTATION PURPOSES ONLY-->
+
+        <!--SYSMON EVENT ID 5 : PROCESS ENDED-->
+        <ProcessTerminate onmatch="include"/>
+
+        <!--SYSMON EVENT ID 6 : DRIVER LOADED INTO KERNEL-->
+        <!--DATA: UtcTime, ImageLoaded, Hashes, Signed, Signature, SignatureStatus-->
+        <DriverLoad onmatch="include"/>
+
+        <!--SYSMON EVENT ID 7 : DLL (IMAGE) LOADED BY PROCESS-->
+        <!-- Log all images except if it's Microsoft or Windows signed -->
+        <ImageLoad onmatch="include"/>
+
+        <!--SYSMON EVENT ID 8 : REMOTE THREAD CREATED-->
+        <CreateRemoteThread onmatch="include"/>
+
+        <!--SYSMON EVENT ID 9 : RAW DISK ACCESS-->
+        <RawAccessRead onmatch="include"/>
+
+        <!--SYSMON EVENT ID 10 : INTER-PROCESS ACCESS-->
+        <ProcessAccess onmatch="include"/>
+
+        <!--SYSMON EVENT ID 11 : FILE CREATED-->
+        <FileCreate onmatch="include"/>
+
+        <!--SYSMON EVENT ID 12 & 13 & 14 : REGISTRY MODIFICATION-->
+        <RegistryEvent onmatch="include">
+            <TargetObject condition="contains">Lunch</TargetObject>
+        </RegistryEvent>
+
+        <!--SYSMON EVENT ID 15 : ALTERNATE DATA STREAM CREATED-->
+        <FileCreateStreamHash onmatch="include"/>
+
+        <!--SYSMON EVENT ID 16 : SYSMON CONFIGURATION CHANGE, THIS LINE IS INCLUDED FOR DOCUMENTATION PURPOSES ONLY-->
+        <!--SYSMON EVENT ID 17 & 18 : PIPE CREATED / PIPE CONNECTED-->
+        <PipeEvent onmatch="include"/>
+
+        <!-- Event ID 19,20,21: - WmiEvent (WmiEventFilter activity detected) -->
+        <WmiEvent onmatch="include"/>
+        <!-- Need to figure out how to invoke the actual event -->
+    </EventFiltering>
+</Sysmon>
