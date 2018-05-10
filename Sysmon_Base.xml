@@ -50,6 +50,7 @@
         <FileCreateStreamHash onmatch="include"/>
 
         <!--SYSMON EVENT ID 16 : SYSMON CONFIGURATION CHANGE, THIS LINE IS INCLUDED FOR DOCUMENTATION PURPOSES ONLY-->
+        
         <!--SYSMON EVENT ID 17 & 18 : PIPE CREATED / PIPE CONNECTED-->
         <PipeEvent onmatch="include"/>
 
