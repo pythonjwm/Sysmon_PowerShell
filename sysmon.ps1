@@ -1,4 +1,4 @@
-# SYSMON PowerShel examples
+# SYSMON PowerShell examples
 
 #region ProcessCreate: Event 1
 Start-Process PowerShell
