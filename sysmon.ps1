@@ -134,6 +134,37 @@ Set-ItemProperty -path $Key -Name 'Lunch' -Type 'String' -Value 'A big fan!'
 
 #region FileCreateStreamHash: Event 15
 #https://collaborate.osumc.edu/it/staff/TSS/ServerTeam/scriptingblog/default.aspx
+
+# Create a text file with a bit of text
+"This is visible data" > "C:\TEMP\ads.txt"
+
+# verify content, opens in your default text reader
+Invoke-Item "C:\TEMP\ads.txt"
+
+# View the streams, should only see the default stream
+Get-Item -Path "C:\TEMP\ads.txt" -Stream *
+
+# Create some data...
+$data = @'
+John Claverhouse was a moon-faced man.
+You know the kind, cheek-bones wide apart,
+chin and forehead melting into the cheeks to complete the perfect round,
+and the nose, broad and pudgy, equidistant from the circumference,
+flattened against the very centre of the face like a dough-ball upon the ceiling.
+'@
+
+# apply the data to a new stream
+Set-Content -Path "C:\TEMP\ads.txt" -Stream Hidden -Value $data
+
+# View the streams again, should see two streams
+Get-Item -Path "C:\TEMP\ads.txt" -Stream *
+
+# View the actual stream
+Get-Content -Path 'C:\TEMP\ads.txt:hidden'
+
+# More stream info
+# https://blogs.technet.microsoft.com/askcore/2013/03/24/alternate-data-streams-in-ntfs/
+# https://docs.microsoft.com/en-us/sysinternals/downloads/streams
 #endregion
 
 #region WmiEvent: Event 19/20/21
