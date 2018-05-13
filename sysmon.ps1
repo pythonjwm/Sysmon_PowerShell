@@ -231,3 +231,13 @@ Get-WMIObject -Namespace root\Subscription -Class LogFileEventConsumer -Filter "
 Get-WMIObject -Namespace root\Subscription -Class __FilterToConsumerBinding -Filter "__Path LIKE '%Service_Filter%'"  | Remove-WmiObject -Verbose
 
 #endregion
+
+# Get event count for all sysmon events
+Get-WinEvent -LogName 'Microsoft-Windows-Sysmon/Operational' | 
+Group-Object -Property ID -NoElement | 
+Select-Object @{
+    Name='Name'
+    Expression={$_.Name -as [int]}
+}, Count | 
+Sort-Object Name |
+Out-GridView -Title "5 Minutes with Sysmon"
