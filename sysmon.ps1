@@ -133,7 +133,6 @@ Set-ItemProperty -path $Key -Name 'Lunch' -Type 'String' -Value 'A big fan!'
 #endregion
 
 #region FileCreateStreamHash: Event 15
-#https://collaborate.osumc.edu/it/staff/TSS/ServerTeam/scriptingblog/default.aspx
 
 # Create a text file with a bit of text
 "This is visible data" > "C:\TEMP\ads.txt"
