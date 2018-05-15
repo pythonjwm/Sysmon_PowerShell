@@ -36,7 +36,7 @@ foreach ($event in $events) {
 # 4 per minute limit, may need to put a sleep command in
 foreach ($hash in $hashes) {
     $url = 'https://www.virustotal.com/vtapi/v2/file/report'
-    $apikey = 'cd32bbf8b8bf486cca07196c430a19aa9e10b797f673d816f7c7618aba8ff952'
+    $apikey = 'cd32bb Get your own key 97f673d816f7c7618ab2'
     $rest = Invoke-RestMethod -Method Post -Uri $url -Body @{resource = $hash; apikey = $apikey } |
         Select-Object Resource, scan_date, Positives, Total
 
